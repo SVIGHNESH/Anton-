@@ -11,7 +11,7 @@
                <content>
                   <VBox fx:id="dashboardContent" spacing="20.0">
                      <children>
-                        <Label fx:id="currentBudgetLabel" text="Budget: $0.00" />
+                        <Label fx:id="currentBudgetLabel" text="Budget: ₹0.00" />
                         <Button fx:id="newBudgetButton" text="New Budget" />
                         <Button fx:id="addExpenseButton" text="Add Expense" />
                      </children>
@@ -45,9 +45,9 @@
                <content>
                   <VBox spacing="10.0">
                      <children>
-                        <Label fx:id="totalExpensesLabel" text="Total Expenses: $0.00" />
-                        <Label fx:id="averageDailySpendingLabel" text="Average Daily: $0.00" />
-                        <Label fx:id="biggestExpenseLabel" text="Biggest Expense: $0.00" />
+                        <Label fx:id="totalExpensesLabel" text="Total Expenses: ₹0.00" />
+                        <Label fx:id="averageDailySpendingLabel" text="Average Daily: ₹0.00" />
+                        <Label fx:id="biggestExpenseLabel" text="Biggest Expense: ₹0.00" />
                      </children>
                   </VBox>
                </content>

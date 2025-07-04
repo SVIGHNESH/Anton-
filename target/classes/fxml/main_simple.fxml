@@ -7,8 +7,8 @@
    <center>
       <VBox spacing="20.0">
          <children>
-            <Label text="Buckwheat Money Tracker" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-            <Label fx:id="currentBudgetLabel" text="Budget: $0.00" />
+            <Label text="Anton Money Tracker" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label fx:id="currentBudgetLabel" text="Budget: ₹0.00" />
             <Button fx:id="newBudgetButton" text="New Budget" />
             <Button fx:id="addExpenseButton" text="Add Expense" />
          </children>

@@ -1,4 +1,4 @@
-# Buckwheat Java - Money Tracker
+# Anton Java - Money Tracker
 
 A comprehensive money tracking and budgeting application inspired by the original Buckwheat app, built with Java and JavaFX.
 
@@ -46,7 +46,7 @@ A comprehensive money tracking and budgeting application inspired by the origina
 1. **Clone or download the project**
    ```bash
    git clone <repository-url>
-   cd buckwheat-java
+   cd anton-java
    ```
 
 2. **Build the project**
@@ -68,7 +68,7 @@ A comprehensive money tracking and budgeting application inspired by the origina
 
 ```bash
 mvn clean package
-java -cp target/buckwheat-java-1.0.0-shaded.jar com.moneytracker.BuckwheatApp
+java -cp target/anton-java-1.0.0-shaded.jar com.moneytracker.BuckwheatApp
 ```
 
 ## Project Structure

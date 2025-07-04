@@ -15,7 +15,7 @@ import java.io.IOException;
 
 /**
  * Anton Java - Money Tracker Application
- * A comprehensive budgeting and expense tracking application inspired by the original Buckwheat app.
+ * A comprehensive budgeting and expense tracking application.
  * 
  * Features:
  * - Budget management with period-based tracking
@@ -24,7 +24,7 @@ import java.io.IOException;
  * - Analytics and spending visualization
  * - Modern JavaFX interface
  */
-public class BuckwheatApp extends Application {
+public class AntonApp extends Application {
     
     private static final String APP_TITLE = "Anton Java - Money Tracker";
     private static final String MAIN_FXML = "/fxml/main_basic.fxml";

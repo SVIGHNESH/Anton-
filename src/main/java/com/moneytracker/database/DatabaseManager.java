@@ -12,7 +12,7 @@ import java.sql.Statement;
  */
 public class DatabaseManager {
     
-    private static final String DATABASE_NAME = "buckwheat_money_tracker.db";
+    private static final String DATABASE_NAME = "anton_money_tracker.db";
     private static final String DATABASE_URL = "jdbc:sqlite:" + DATABASE_NAME;
     
     private Connection connection;

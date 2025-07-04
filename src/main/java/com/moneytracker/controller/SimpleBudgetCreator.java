@@ -2,6 +2,7 @@ package com.moneytracker.controller;
 
 import com.moneytracker.model.Budget;
 import com.moneytracker.service.BudgetService;
+import com.moneytracker.util.CurrencyUtil;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -33,7 +34,7 @@ public class SimpleBudgetCreator {
         TextInputDialog amountDialog = new TextInputDialog("1000.00");
         amountDialog.setTitle("Create New Budget");
         amountDialog.setHeaderText("Budget Setup");
-        amountDialog.setContentText("Enter budget amount ($):");
+        amountDialog.setContentText("Enter budget amount (₹):");
         
         amountDialog.showAndWait().ifPresent(amountStr -> {
             try {
@@ -57,11 +58,11 @@ public class SimpleBudgetCreator {
                         successAlert.setTitle("Success");
                         successAlert.setHeaderText("Budget Created");
                         successAlert.setContentText(String.format(
-                            "Budget created successfully!\n\nAmount: $%.2f\nPeriod: %s to %s\nDaily Budget: $%.2f",
-                            budget.getTotalAmount(),
+                            "Budget created successfully!\n\nAmount: %s\nPeriod: %s to %s\nDaily Budget: %s",
+                            CurrencyUtil.formatAmount(budget.getTotalAmount()),
                             budget.getStartDate(),
                             budget.getEndDate(),
-                            budget.getDailyBudget()
+                            CurrencyUtil.formatAmount(budget.getDailyBudget())
                         ));
                         successAlert.showAndWait();
                         
@@ -84,7 +85,7 @@ public class SimpleBudgetCreator {
         TextInputDialog amountDialog = new TextInputDialog("0.00");
         amountDialog.setTitle("Add Expense");
         amountDialog.setHeaderText("Record Expense");
-        amountDialog.setContentText("Enter expense amount ($):");
+        amountDialog.setContentText("Enter expense amount (₹):");
         
         amountDialog.showAndWait().ifPresent(amountStr -> {
             try {
@@ -107,8 +108,8 @@ public class SimpleBudgetCreator {
                         successAlert.setTitle("Success");
                         successAlert.setHeaderText("Expense Added");
                         successAlert.setContentText(String.format(
-                            "Expense recorded successfully!\n\nAmount: $%.2f\nDescription: %s",
-                            transaction.getAmount(),
+                            "Expense recorded successfully!\n\nAmount: %s\nDescription: %s",
+                            CurrencyUtil.formatAmount(transaction.getAmount()),
                             transaction.getDescription()
                         ));
                         successAlert.showAndWait();

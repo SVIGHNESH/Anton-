@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run Buckwheat Money Tracker",
+			"label": "Run Anton Money Tracker",
 			"type": "shell",
 			"command": "mvn",
 			"args": [
@@ -11,7 +11,7 @@
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": [],
-			"detail": "Run the Buckwheat Java Money Tracker application"
+			"detail": "Run the Anton Java Money Tracker application"
 		},
 		{
 			"label": "Build Project",

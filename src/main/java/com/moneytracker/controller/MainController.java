@@ -5,6 +5,7 @@ import com.moneytracker.model.Budget;
 import com.moneytracker.model.Transaction;
 import com.moneytracker.service.BudgetService;
 import com.moneytracker.service.TransactionService;
+import com.moneytracker.util.CurrencyUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -143,7 +144,7 @@ public class MainController {
         
         amountColumn.setCellValueFactory(cellData -> {
             BigDecimal amount = cellData.getValue().getAmount();
-            String formattedAmount = String.format("$%.2f", amount);
+            String formattedAmount = CurrencyUtil.formatAmount(amount);
             if (cellData.getValue().getType() == Transaction.TransactionType.EXPENSE) {
                 formattedAmount = "-" + formattedAmount;
             }
@@ -187,10 +188,10 @@ public class MainController {
         }
         
         // Update labels
-        currentBudgetLabel.setText(String.format("$%.2f", currentBudget.getTotalAmount()));
-        spentAmountLabel.setText(String.format("$%.2f", currentBudget.getSpentAmount()));
-        remainingAmountLabel.setText(String.format("$%.2f", currentBudget.getRemainingAmount()));
-        dailyBudgetLabel.setText(String.format("$%.2f", currentBudget.getDailyBudget()));
+        currentBudgetLabel.setText(CurrencyUtil.formatAmount(currentBudget.getTotalAmount()));
+        spentAmountLabel.setText(CurrencyUtil.formatAmount(currentBudget.getSpentAmount()));
+        remainingAmountLabel.setText(CurrencyUtil.formatAmount(currentBudget.getRemainingAmount()));
+        dailyBudgetLabel.setText(CurrencyUtil.formatAmount(currentBudget.getDailyBudget()));
         
         // Update progress bar
         double spentPercentage = currentBudget.getSpentPercentage() / 100.0;
@@ -212,9 +213,9 @@ public class MainController {
      */
     private void showNoBudgetState() {
         currentBudgetLabel.setText("No Active Budget");
-        spentAmountLabel.setText("$0.00");
-        remainingAmountLabel.setText("$0.00");
-        dailyBudgetLabel.setText("$0.00");
+        spentAmountLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
+        remainingAmountLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
+        dailyBudgetLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
         budgetProgressBar.setProgress(0);
         progressPercentageLabel.setText("0%");
     }
@@ -248,9 +249,9 @@ public class MainController {
     private void updateAnalytics() {
         if (currentBudget == null) {
             categorySpendingChart.getData().clear();
-            totalExpensesLabel.setText("$0.00");
-            averageDailySpendingLabel.setText("$0.00");
-            biggestExpenseLabel.setText("$0.00");
+            totalExpensesLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
+            averageDailySpendingLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
+            biggestExpenseLabel.setText(CurrencyUtil.formatAmount(BigDecimal.ZERO));
             return;
         }
         
@@ -268,16 +269,16 @@ public class MainController {
             // Update summary statistics
             BudgetService.BudgetSummary summary = budgetService.calculateBudgetSummary(currentBudget.getId());
             if (summary != null) {
-                totalExpensesLabel.setText(String.format("$%.2f", summary.getTotalExpenses()));
+                totalExpensesLabel.setText(CurrencyUtil.formatAmount(summary.getTotalExpenses()));
                 
                 // Calculate average daily spending
                 long daysElapsed = Math.max(1, currentBudget.getTotalDays() - currentBudget.getRemainingDays());
                 BigDecimal averageDaily = summary.getTotalExpenses().divide(BigDecimal.valueOf(daysElapsed), 2, java.math.RoundingMode.HALF_UP);
-                averageDailySpendingLabel.setText(String.format("$%.2f", averageDaily));
+                averageDailySpendingLabel.setText(CurrencyUtil.formatAmount(averageDaily));
                 
                 // Find biggest expense
                 BigDecimal biggestExpense = findBiggestExpense();
-                biggestExpenseLabel.setText(String.format("$%.2f", biggestExpense));
+                biggestExpenseLabel.setText(CurrencyUtil.formatAmount(biggestExpense));
             }
             
         } catch (Exception e) {
@@ -342,7 +343,7 @@ public class MainController {
         Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialog.setTitle("Delete Transaction");
         confirmDialog.setHeaderText("Are you sure you want to delete this transaction?");
-        confirmDialog.setContentText(selectedTransaction.getDescription() + " - $" + selectedTransaction.getAmount());
+        confirmDialog.setContentText(selectedTransaction.getDescription() + " - " + CurrencyUtil.formatAmount(selectedTransaction.getAmount()));
         
         Optional<ButtonType> result = confirmDialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {

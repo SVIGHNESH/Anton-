@@ -10,7 +10,7 @@
    <top>
       <VBox styleClass="header">
          <children>
-            <Label styleClass="app-title" text="Buckwheat Java - Money Tracker">
+            <Label styleClass="app-title" text="Anton Java - Money Tracker">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -53,7 +53,7 @@
                                           <VBox>
                                              <children>
                                                 <Label text="Total Budget" />
-                                                <Label fx:id="currentBudgetLabel" styleClass="amount-label" text="$0.00">
+                                                <Label fx:id="currentBudgetLabel" styleClass="amount-label" text="₹0.00">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
@@ -63,7 +63,7 @@
                                           <VBox GridPane.columnIndex="1">
                                              <children>
                                                 <Label text="Spent" />
-                                                <Label fx:id="spentAmountLabel" styleClass="amount-label" text="$0.00">
+                                                <Label fx:id="spentAmountLabel" styleClass="amount-label" text="₹0.00">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
@@ -73,7 +73,7 @@
                                           <VBox GridPane.columnIndex="2">
                                              <children>
                                                 <Label text="Remaining" />
-                                                <Label fx:id="remainingAmountLabel" styleClass="amount-label" text="$0.00">
+                                                <Label fx:id="remainingAmountLabel" styleClass="amount-label" text="₹0.00">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
@@ -83,7 +83,7 @@
                                           <VBox GridPane.columnIndex="3">
                                              <children>
                                                 <Label text="Daily Budget" />
-                                                <Label fx:id="dailyBudgetLabel" styleClass="amount-label" text="$0.00">
+                                                <Label fx:id="dailyBudgetLabel" styleClass="amount-label" text="₹0.00">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
                                                    </font>
@@ -192,7 +192,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="totalExpensesLabel" styleClass="stat-value" text="$0.00">
+                                          <Label fx:id="totalExpensesLabel" styleClass="stat-value" text="₹0.00">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -209,7 +209,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="averageDailySpendingLabel" styleClass="stat-value" text="$0.00">
+                                          <Label fx:id="averageDailySpendingLabel" styleClass="stat-value" text="₹0.00">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -226,7 +226,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="biggestExpenseLabel" styleClass="stat-value" text="$0.00">
+                                          <Label fx:id="biggestExpenseLabel" styleClass="stat-value" text="₹0.00">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>

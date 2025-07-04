@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.moneytracker</groupId>
-    <artifactId>buckwheat-java</artifactId>
+    <artifactId>anton-java</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Buckwheat Java - Money Tracker</name>
+    <name>Anton Java - Money Tracker</name>
     <description>A comprehensive money tracking and budgeting application inspired by Buckwheat</description>
 
     <properties>

@@ -1,6 +1,6 @@
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
-# Buckwheat Java Money Tracker - Copilot Instructions
+# Anton Java Money Tracker - Copilot Instructions
 
 This is a Java-based money tracking and budgeting application inspired by the original Buckwheat app. The project uses JavaFX for the UI, SQLite for data storage, and Maven for build management.
 

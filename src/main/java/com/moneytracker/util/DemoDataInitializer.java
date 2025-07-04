@@ -47,7 +47,7 @@ public class DemoDataInitializer {
         // Create a demo budget for this month
         LocalDate startDate = LocalDate.now().withDayOfMonth(1); // First day of current month
         LocalDate endDate = startDate.plusMonths(1).minusDays(1); // Last day of current month
-        BigDecimal budgetAmount = new BigDecimal("1500.00");
+        BigDecimal budgetAmount = new BigDecimal("15000.00");
         
         Budget demoBudget = budgetService.createBudget(
             budgetAmount,
@@ -66,16 +66,16 @@ public class DemoDataInitializer {
     private void addDemoExpenses(Long budgetId) throws Exception {
         // Sample expenses with different categories
         Object[][] sampleExpenses = {
-            {"Grocery Shopping", new BigDecimal("85.50"), 1L}, // Food & Dining
-            {"Gas Station", new BigDecimal("45.00"), 2L}, // Transportation
-            {"Coffee Shop", new BigDecimal("12.75"), 1L}, // Food & Dining
-            {"Movie Tickets", new BigDecimal("28.00"), 4L}, // Entertainment
-            {"Electricity Bill", new BigDecimal("120.00"), 5L}, // Bills & Utilities
-            {"Lunch", new BigDecimal("15.25"), 1L}, // Food & Dining
-            {"Bus Pass", new BigDecimal("30.00"), 2L}, // Transportation
-            {"Book Purchase", new BigDecimal("22.99"), 7L}, // Education
-            {"Pharmacy", new BigDecimal("18.50"), 6L}, // Healthcare
-            {"Dinner Out", new BigDecimal("65.00"), 1L}, // Food & Dining
+            {"Grocery Shopping", new BigDecimal("850.50"), 1L}, // Food & Dining
+            {"Petrol", new BigDecimal("450.00"), 2L}, // Transportation
+            {"Coffee Shop", new BigDecimal("127.50"), 1L}, // Food & Dining
+            {"Movie Tickets", new BigDecimal("280.00"), 4L}, // Entertainment
+            {"Electricity Bill", new BigDecimal("1200.00"), 5L}, // Bills & Utilities
+            {"Lunch", new BigDecimal("152.50"), 1L}, // Food & Dining
+            {"Metro Card", new BigDecimal("300.00"), 2L}, // Transportation
+            {"Book Purchase", new BigDecimal("229.90"), 7L}, // Education
+            {"Pharmacy", new BigDecimal("185.00"), 6L}, // Healthcare
+            {"Dinner Out", new BigDecimal("650.00"), 1L}, // Food & Dining
         };
         
         for (Object[] expense : sampleExpenses) {
