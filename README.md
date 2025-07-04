@@ -1,6 +1,21 @@
 # Anton Java - Money Tracker
 
-A comprehensive money tracking and budgeting application inspired by the original Buckwheat app, built with Java and JavaFX.
+A comprehensive money tracking and budgeting application with Indian Rupee (₹) support, built with Java and JavaFX.
+
+## 🚀 Quick Start
+
+### Download & Run (Recommended)
+1. **Download:** Get the latest `anton-money-tracker.jar` from [Releases](https://github.com/[your-username]/Anton/releases)
+2. **Install Java 17+:** Download from [Adoptium](https://adoptium.net/) if needed
+3. **Run:** Double-click the JAR file or run `java -jar anton-money-tracker.jar`
+
+### Build from Source
+```bash
+git clone https://github.com/[your-username]/Anton.git
+cd Anton
+mvn clean package
+java -jar target/anton-money-tracker.jar
+```
 
 ## Features
 
