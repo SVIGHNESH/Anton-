@@ -5,7 +5,7 @@
 *.sqlite
 *.sqlite3
 anton_money_tracker.db
-buckwheat_money_tracker.db
+
 
 # Maven Build Output
 target/
