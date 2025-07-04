@@ -4,16 +4,22 @@
 
 ### 1. Automatic GitHub Releases (Recommended)
 
-The project now includes GitHub Actions that will automatically build and create releases:
+The project includes GitHub Actions that will automatically build and create releases using the latest action versions:
 
 #### Setup:
 1. Push your code to GitHub
 2. Create a tag for release: `git tag v1.0.0 && git push origin v1.0.0`
 3. GitHub Actions will automatically:
-   - Build the JAR file
+   - Build the JAR file using Maven
    - Run tests
    - Create a GitHub Release
-   - Upload the executable JAR
+   - Upload the executable JAR (`anton-money-tracker.jar`)
+
+#### Important Updates:
+- ✅ Updated to `actions/upload-artifact@v4` (GitHub deprecated v3)
+- ✅ Updated to `actions/cache@v4` for better performance
+- ✅ Uses `softprops/action-gh-release@v1` for reliable releases
+- ✅ Improved error handling and artifact retention
 
 #### Files Created:
 - **anton-money-tracker.jar** - Ready-to-run executable JAR (includes all dependencies)
@@ -120,3 +126,25 @@ mvn clean package shade:shade
 3. **Create first release:** `git tag v1.0.0 && git push origin v1.0.0`
 4. **Update README:** Add download links and instructions
 5. **Share:** Users can now download and run directly!
+
+### 9. Troubleshooting GitHub Actions
+
+#### Build Failures:
+- **Action version errors:** The workflow now uses latest versions (v4 for artifacts, v1 for releases)
+- **Permission issues:** Ensure `GITHUB_TOKEN` has proper permissions in repository settings
+- **Maven build fails:** Check Java version and dependencies in the workflow
+
+#### Common Issues:
+```bash
+# If local build works but GitHub Actions fails:
+1. Check the Actions tab in your GitHub repository
+2. Look at the build logs for specific errors
+3. Ensure all files are committed and pushed
+4. Verify the tag was created properly: git tag -l
+```
+
+#### Manual Release Backup:
+If GitHub Actions fails, you can always create releases manually:
+1. Build locally: `mvn clean package shade:shade`
+2. Go to GitHub → Releases → Create new release
+3. Upload `target/anton-money-tracker.jar`
