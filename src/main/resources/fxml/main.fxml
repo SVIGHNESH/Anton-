@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moneytracker.controller.MainController">
+   <top>
+      <VBox styleClass="header">
+         <children>
+            <Label styleClass="app-title" text="Buckwheat Java - Money Tracker">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Dashboard">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox fx:id="dashboardContent" spacing="20.0">
+                           <children>
+                              <!-- Budget Overview Card -->
+                              <VBox styleClass="card">
+                                 <children>
+                                    <Label styleClass="card-title" text="Current Budget">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane hgap="20.0" vgap="10.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <Label text="Total Budget" />
+                                                <Label fx:id="currentBudgetLabel" styleClass="amount-label" text="$0.00">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox GridPane.columnIndex="1">
+                                             <children>
+                                                <Label text="Spent" />
+                                                <Label fx:id="spentAmountLabel" styleClass="amount-label" text="$0.00">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox GridPane.columnIndex="2">
+                                             <children>
+                                                <Label text="Remaining" />
+                                                <Label fx:id="remainingAmountLabel" styleClass="amount-label" text="$0.00">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox GridPane.columnIndex="3">
+                                             <children>
+                                                <Label text="Daily Budget" />
+                                                <Label fx:id="dailyBudgetLabel" styleClass="amount-label" text="$0.00">
+                                                   <font>
+                                                      <Font name="System Bold" size="16.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox GridPane.columnSpan="4" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="Progress" />
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <ProgressBar fx:id="budgetProgressBar" prefWidth="300.0" progress="0.0" />
+                                                      <Label fx:id="progressPercentageLabel" text="0%" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                              
+                              <!-- Action Buttons -->
+                              <HBox spacing="20.0">
+                                 <children>
+                                    <Button fx:id="newBudgetButton" styleClass="primary-button" text="New Budget">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="addExpenseButton" styleClass="secondary-button" text="Add Expense">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+          <Tab text="Transactions">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <!-- Transaction Controls -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label text="Recent Transactions">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button fx:id="editTransactionButton" text="Edit" />
+                              <Button fx:id="deleteTransactionButton" text="Delete" />
+                           </children>
+                        </HBox>
+                        
+                        <!-- Transactions Table -->
+                        <TableView fx:id="transactionsTable" prefHeight="400.0">
+                          <columns>
+                            <TableColumn fx:id="dateColumn" prefWidth="150.0" text="Date" />
+                            <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description" />
+                              <TableColumn fx:id="categoryColumn" prefWidth="120.0" text="Category" />
+                              <TableColumn fx:id="amountColumn" prefWidth="100.0" text="Amount" />
+                              <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Analytics">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox spacing="20.0">
+                           <children>
+                              <!-- Statistics Cards -->
+                              <GridPane hgap="20.0" vgap="20.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <VBox styleClass="card">
+                                       <children>
+                                          <Label text="Total Expenses">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="totalExpensesLabel" styleClass="stat-value" text="$0.00">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox styleClass="card" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label text="Average Daily">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="averageDailySpendingLabel" styleClass="stat-value" text="$0.00">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox styleClass="card" GridPane.columnIndex="2">
+                                       <children>
+                                          <Label text="Biggest Expense">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="biggestExpenseLabel" styleClass="stat-value" text="$0.00">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </GridPane>
+                              
+                              <!-- Category Spending Chart -->
+                              <VBox styleClass="card">
+                                 <children>
+                                    <Label text="Spending by Category">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <PieChart fx:id="categorySpendingChart" prefHeight="300.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
