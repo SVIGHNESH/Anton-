@@ -1,26 +1,19 @@
 package com.moneytracker.controller;
 
+import com.moneytracker.controller.SimpleBudgetCreator;
 import com.moneytracker.model.Budget;
-import com.moneytracker.model.Category;
 import com.moneytracker.model.Transaction;
 import com.moneytracker.service.BudgetService;
-import com.moneytracker.service.CategoryService;
 import com.moneytracker.service.TransactionService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +28,6 @@ public class MainController {
     // Services
     private BudgetService budgetService;
     private TransactionService transactionService;
-    private CategoryService categoryService;
     
     // FXML Components - Dashboard Tab
     @FXML private TabPane mainTabPane;
@@ -70,14 +62,21 @@ public class MainController {
     private Budget currentBudget;
     
     /**
-     * Initialize the controller with services
+     * JavaFX initialize method called automatically after FXML loading
      */
-    public void initialize(BudgetService budgetService, TransactionService transactionService) {
+    @FXML
+    private void initialize() {
+        // Setup UI components only - services will be injected later
+        setupUI();
+    }
+    
+    /**
+     * Initialize the controller with services (called manually from App)
+     */
+    public void initializeServices(BudgetService budgetService, TransactionService transactionService) {
         this.budgetService = budgetService;
         this.transactionService = transactionService;
-        // We'll initialize categoryService later when we need it
         
-        setupUI();
         loadCurrentBudget();
         refreshData();
     }
@@ -86,33 +85,50 @@ public class MainController {
      * Setup UI components and event handlers
      */
     private void setupUI() {
-        // Setup transactions table
-        setupTransactionsTable();
+        // Setup transactions table only if it exists
+        if (transactionsTable != null) {
+            setupTransactionsTable();
+        }
         
-        // Setup button event handlers
-        newBudgetButton.setOnAction(e -> showNewBudgetDialog());
-        addExpenseButton.setOnAction(e -> showAddExpenseDialog());
-        editTransactionButton.setOnAction(e -> editSelectedTransaction());
-        deleteTransactionButton.setOnAction(e -> deleteSelectedTransaction());
+        // Setup button event handlers only if buttons exist
+        if (newBudgetButton != null) {
+            newBudgetButton.setOnAction(e -> showNewBudgetDialog());
+        }
+        if (addExpenseButton != null) {
+            addExpenseButton.setOnAction(e -> showAddExpenseDialog());
+        }
+        if (editTransactionButton != null) {
+            editTransactionButton.setOnAction(e -> editSelectedTransaction());
+        }
+        if (deleteTransactionButton != null) {
+            deleteTransactionButton.setOnAction(e -> deleteSelectedTransaction());
+        }
         
-        // Setup table selection listener
-        transactionsTable.getSelectionModel().selectedItemProperty().addListener(
-            (obs, oldSelection, newSelection) -> {
-                boolean hasSelection = newSelection != null;
-                editTransactionButton.setDisable(!hasSelection);
-                deleteTransactionButton.setDisable(!hasSelection);
-            }
-        );
-        
-        // Initially disable edit/delete buttons
-        editTransactionButton.setDisable(true);
-        deleteTransactionButton.setDisable(true);
+        // Setup table selection listener only if all components exist
+        if (transactionsTable != null && editTransactionButton != null && deleteTransactionButton != null) {
+            transactionsTable.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSelection, newSelection) -> {
+                    boolean hasSelection = newSelection != null;
+                    editTransactionButton.setDisable(!hasSelection);
+                    deleteTransactionButton.setDisable(!hasSelection);
+                }
+            );
+            
+            // Initially disable edit/delete buttons
+            editTransactionButton.setDisable(true);
+            deleteTransactionButton.setDisable(true);
+        }
     }
     
     /**
      * Setup the transactions table columns
      */
     private void setupTransactionsTable() {
+        if (dateColumn == null || descriptionColumn == null || categoryColumn == null || 
+            amountColumn == null || typeColumn == null || transactionsTable == null) {
+            return; // Skip setup if any components are missing
+        }
+        
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
         
         dateColumn.setCellValueFactory(cellData -> 
@@ -284,9 +300,10 @@ public class MainController {
      * Show new budget creation dialog
      */
     private void showNewBudgetDialog() {
-        // For now, show a simple input dialog
-        showInfoAlert("New Budget", "Budget creation dialog will be implemented in the next update.");
-        // TODO: Implement proper budget dialog
+        SimpleBudgetCreator.showBudgetCreationDialog(budgetService);
+        // Refresh data after dialog closes
+        loadCurrentBudget();
+        refreshData();
     }
     
     /**
@@ -298,9 +315,10 @@ public class MainController {
             return;
         }
         
-        // For now, show a simple input dialog
-        showInfoAlert("Add Expense", "Expense dialog will be implemented in the next update.");
-        // TODO: Implement proper expense dialog
+        SimpleBudgetCreator.showExpenseCreationDialog(transactionService, currentBudget.getId());
+        // Refresh data after dialog closes
+        loadCurrentBudget(); // Reload budget to get updated spent amount
+        refreshData();
     }
     
     /**

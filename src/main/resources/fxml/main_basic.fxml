@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moneytracker.controller.MainController">
+   <center>
+      <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Dashboard">
+               <content>
+                  <VBox fx:id="dashboardContent" spacing="20.0">
+                     <children>
+                        <Label fx:id="currentBudgetLabel" text="Budget: $0.00" />
+                        <Button fx:id="newBudgetButton" text="New Budget" />
+                        <Button fx:id="addExpenseButton" text="Add Expense" />
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Transactions">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <TableView fx:id="transactionsTable" prefHeight="400.0">
+                          <columns>
+                            <TableColumn fx:id="dateColumn" prefWidth="150.0" text="Date" />
+                            <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Description" />
+                              <TableColumn fx:id="categoryColumn" prefWidth="120.0" text="Category" />
+                              <TableColumn fx:id="amountColumn" prefWidth="100.0" text="Amount" />
+                              <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
+                          </columns>
+                        </TableView>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="editTransactionButton" text="Edit" />
+                              <Button fx:id="deleteTransactionButton" text="Delete" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Analytics">
+               <content>
+                  <VBox spacing="10.0">
+                     <children>
+                        <Label fx:id="totalExpensesLabel" text="Total Expenses: $0.00" />
+                        <Label fx:id="averageDailySpendingLabel" text="Average Daily: $0.00" />
+                        <Label fx:id="biggestExpenseLabel" text="Biggest Expense: $0.00" />
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,268 @@
+/* Buckwheat Java Money Tracker - Main Stylesheet */
+
+/* Root Styling */
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f8f9fa;
+}
+
+/* Header Styling */
+.header {
+    -fx-background-color: linear-gradient(to right, #667eea 0%, #764ba2 100%);
+    -fx-text-fill: white;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Card Styling */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-border-radius: 12px;
+}
+
+.card-title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 15 0;
+}
+
+/* Amount Labels */
+.amount-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.stat-value {
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-min-height: 40px;
+}
+
+.primary-button {
+    -fx-background-color: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5a6fd8 0%, #6a4190 100%);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+}
+
+.secondary-button {
+    -fx-background-color: linear-gradient(to bottom, #2ecc71 0%, #27ae60 100%);
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+.secondary-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #27ae60 0%, #229954 100%);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+}
+
+.button:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* Tab Styling */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 20 0 20;
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 15 25 15 25;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #f1f2f6;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.tab-pane .tab:selected:hover {
+    -fx-background-color: #5a6fd8;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 1 1 1;
+}
+
+/* Table Styling */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e0e0e0;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px;
+}
+
+.table-view .table-cell {
+    -fx-padding: 8px;
+    -fx-text-fill: #2c3e50;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+    -fx-background-color: #e0e0e0;
+    -fx-background-radius: 20px;
+    -fx-padding: 2px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #2ecc71 0%, #27ae60 100%);
+    -fx-background-radius: 18px;
+    -fx-padding: 4px;
+}
+
+/* Chart Styling */
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.chart-title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+/* Pie Chart specific */
+.chart-pie-label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+}
+
+/* Scroll Pane */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+/* Form Controls */
+.text-field, .text-area, .combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 12px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.3), 6, 0, 0, 0);
+}
+
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+}
+
+.date-picker:focused {
+    -fx-border-color: #667eea;
+    -fx-border-width: 2px;
+}
+
+/* Label Styling */
+.label {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Alert and Dialog Styling */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #667eea;
+    -fx-text-fill: white;
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.dialog-pane .content {
+    -fx-padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    .card {
+        -fx-padding: 15px;
+    }
+    
+    .button {
+        -fx-min-height: 35px;
+        -fx-padding: 8 16 8 16;
+    }
+}

@@ -4,6 +4,7 @@ import com.moneytracker.controller.MainController;
 import com.moneytracker.database.DatabaseManager;
 import com.moneytracker.service.BudgetService;
 import com.moneytracker.service.TransactionService;
+import com.moneytracker.util.DemoDataInitializer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ import java.io.IOException;
 public class BuckwheatApp extends Application {
     
     private static final String APP_TITLE = "Buckwheat Java - Money Tracker";
-    private static final String MAIN_FXML = "/fxml/main.fxml";
+    private static final String MAIN_FXML = "/fxml/main_basic.fxml";
     private static final String APP_ICON = "/images/app-icon.png";
     
     private DatabaseManager databaseManager;
@@ -44,7 +45,7 @@ public class BuckwheatApp extends Application {
         
         // Get controller and inject services
         MainController controller = fxmlLoader.getController();
-        controller.initialize(budgetService, transactionService);
+        controller.initializeServices(budgetService, transactionService);
         
         // Configure stage
         primaryStage.setTitle(APP_TITLE);
@@ -73,12 +74,15 @@ public class BuckwheatApp extends Application {
             // Initialize database manager
             databaseManager = new DatabaseManager();
             databaseManager.initializeDatabase();
-            
-            // Initialize services
-            budgetService = new BudgetService(databaseManager);
-            transactionService = new TransactionService(databaseManager);
-            
-            System.out.println("Services initialized successfully");
+                 // Initialize services
+        budgetService = new BudgetService(databaseManager);
+        transactionService = new TransactionService(databaseManager);
+        
+        // Initialize demo data if needed
+        DemoDataInitializer demoInitializer = new DemoDataInitializer(budgetService, transactionService, databaseManager);
+        demoInitializer.initializeDemoDataIfNeeded();
+        
+        System.out.println("Services initialized successfully");
         } catch (Exception e) {
             System.err.println("Failed to initialize services: " + e.getMessage());
             e.printStackTrace();

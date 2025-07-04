@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.moneytracker.controller.MainController">
+   <center>
+      <VBox spacing="20.0">
+         <children>
+            <Label text="Buckwheat Money Tracker" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label fx:id="currentBudgetLabel" text="Budget: $0.00" />
+            <Button fx:id="newBudgetButton" text="New Budget" />
+            <Button fx:id="addExpenseButton" text="Add Expense" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

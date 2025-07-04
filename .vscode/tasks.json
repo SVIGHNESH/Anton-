@@ -1,0 +1,66 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Buckwheat Money Tracker",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"javafx:run"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": [],
+			"detail": "Run the Buckwheat Java Money Tracker application"
+		},
+		{
+			"label": "Build Project",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"clean",
+				"compile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"detail": "Build the project using Maven"
+		},
+		{
+			"label": "Package JAR",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"clean",
+				"package"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "Create an executable JAR file"
+		},
+		{
+			"label": "Clean Project",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"clean"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "Clean the project build artifacts"
+		},
+		{
+			"label": "Test Project",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"test"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"detail": "Run unit tests"
+		}
+	]
+}
