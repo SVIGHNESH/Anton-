@@ -25,7 +25,7 @@ jobs:
         distribution: 'temurin'
         
     - name: Cache Maven dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -39,10 +39,11 @@ jobs:
       run: mvn clean package shade:shade
       
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: anton-money-tracker-jar
-        path: target/anton-java-*.jar
+        path: target/anton-money-tracker.jar
+        retention-days: 30
         
   release:
     needs: build
@@ -67,13 +68,12 @@ jobs:
       run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
       
     - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ steps.tag_name.outputs.TAG_NAME }}
-        release_name: Anton Money Tracker ${{ steps.tag_name.outputs.TAG_NAME }}
+        name: Anton Money Tracker ${{ steps.tag_name.outputs.TAG_NAME }}
         body: |
           ## Anton Money Tracker Release ${{ steps.tag_name.outputs.TAG_NAME }}
           
@@ -91,16 +91,7 @@ jobs:
           ### System Requirements
           - Java 17 or higher
           - Windows, macOS, or Linux
-          
         draft: false
         prerelease: false
-        
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: target/anton-java-1.0.0.jar
-        asset_name: anton-money-tracker.jar
-        asset_content_type: application/java-archive
+        files: |
+          target/anton-money-tracker.jar
